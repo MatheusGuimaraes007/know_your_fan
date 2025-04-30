@@ -1,9 +1,11 @@
 import sqlite3
 import json
 from datetime import datetime
+import os
 
 class DBManager:
     def __init__(self, db_path='data/users.db'):
+        os.makedirs(os.path.dirname(db_path), exist_ok=True)
         self.conn = sqlite3.connect(db_path, check_same_thread=False)
         self.cursor = self.conn.cursor()
         self.create_table()
