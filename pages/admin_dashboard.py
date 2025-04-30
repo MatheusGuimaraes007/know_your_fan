@@ -20,17 +20,24 @@ df_publico = df.drop(columns=["nome", "endereco", "cpf", "instagram_username", "
 st.metric("👥 Total de Fãs Cadastrados", len(df))
 
 # Métricas adicionais
-doc_validos = df["doc_validado"].sum()
-doc_invalidos = len(df) - doc_validos
-st.metric("📄 Documentos Validados", doc_validos)
-st.metric("📄 Documentos Não Validados", doc_invalidos)
+doc_validos = int(df["doc_validado"].fillna(False).sum())
+doc_invalidos = int(len(df) - doc_validos)
 
-# Gráfico de documentos validados
-st.subheader("📄 Distribuição da Validação de Documentos")
-fig1, ax1 = plt.subplots()
-ax1.pie([doc_validos, doc_invalidos], labels=["Validados", "Não Validados"], autopct="%1.1f%%", startangle=90, colors=["#66bb6a", "#ef5350"])
-ax1.axis("equal")
-st.pyplot(fig1)
+# Gráfico de validação de documentos
+if doc_validos + doc_invalidos > 0:
+    st.subheader("📄 Validação de Documentos")
+    fig1, ax1 = plt.subplots()
+    ax1.pie(
+        [doc_validos, doc_invalidos],
+        labels=["Validados", "Não Validados"],
+        autopct="%1.1f%%",
+        startangle=90,
+        colors=["#66bb6a", "#ef5350"]
+    )
+    ax1.axis("equal")
+    st.pyplot(fig1)
+else:
+    st.warning("Nenhum dado disponível para gerar o gráfico de validação.")
 
 # Interesses mais comuns
 st.subheader("🎮 Interesses mais escolhidos pelos fãs")
