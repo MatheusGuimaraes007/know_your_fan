@@ -1,0 +1,22 @@
+# Ignore virtual environments
+venv/
+.venv/
+
+# Ignore VSCode configs (se estiver usando)
+.vscode/
+
+# Ignore arquivos temporários e cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignore arquivos de ambiente
+.env
+
+# Banco de dados local (apenas para evitar subir um banco de testes)
+data/users.db
