@@ -1,6 +1,5 @@
 import streamlit as st
 import os
-from dotenv import load_dotenv
 from openai import OpenAI
 
 from models.document_validator import DocumentValidator
@@ -8,7 +7,6 @@ from models.instagram_validator import InstagramValidator
 from models.profile_links_validator import ProfileLinksValidator
 from database.db_manager import DBManager
 
-load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 class FanRegistrationApp:

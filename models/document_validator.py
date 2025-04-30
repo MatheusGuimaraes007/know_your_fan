@@ -6,12 +6,10 @@ from PIL import Image, ImageEnhance
 import io
 import openai
 import os
-from dotenv import load_dotenv
 
 class DocumentValidator:
     def __init__(self):
         self.reader = easyocr.Reader(['pt'], gpu=False)
-        load_dotenv()
         openai.api_key = os.getenv("OPENAI_API_KEY")
 
     def similaridade(self, a, b):
